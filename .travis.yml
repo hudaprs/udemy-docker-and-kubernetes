@@ -3,7 +3,11 @@ services:
   - docker
 
 before_install:
-  - docker build -t hudaprasetyo/udemy-docker-and-kubernetes-front-end -f Dockerfile.dev .
+  - docker build -t hudaprasetyo/udemy-docker-and-kubernetes-front-end -f ./frontend/Dockerfile.dev .
 
 script:
   - docker run -e CI=true hudaprasetyo/udemy-docker-and-kubernetes-front-end yarn test -- --coverage
+
+matrix:
+  include:
+    - env: TARGET=frontend
